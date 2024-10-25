@@ -236,3 +236,13 @@
 -fx-font-size:14px;
 -fx-text-alignment:LEFT;
 }
+
+.Employee-logout-btn{
+-fx-background-color:#286155;
+-fx-background-radius:8px;
+-fx-cursor:hand;
+}
+
+.Employee-logout-btn:hover{
+-fx-background-color:#a71931;
+}
