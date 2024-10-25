@@ -373,8 +373,8 @@
                                        </font>
                                     </Label>
                                     <Button fx:id="available_clearBtn" layoutX="275.0" layoutY="460.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="clear-btn" text="Clear" />
-                                    <Button fx:id="available_receiptBtn" layoutX="649.0" layoutY="460.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="update-btn" text="Reciept" />
-                                    <Button fx:id="available_buyBtn" layoutX="766.0" layoutY="460.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="add-btn" text="Buy" />
+                                    <Button fx:id="available_receiptBtn" layoutX="649.0" layoutY="460.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="receipt-btn" text="Receipt" />
+                                    <Button fx:id="available_buyBtn" layoutX="766.0" layoutY="460.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="buy-btn" text="Buy" />
                                     <Label layoutX="670.0" layoutY="397.0" text="Total:">
                                        <font>
                                           <Font name="Tahoma Bold" size="15.0" />
