@@ -123,7 +123,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="63.0" layoutY="127.0" prefHeight="555.0" prefWidth="903.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="63.0" layoutY="127.0" prefHeight="555.0" prefWidth="903.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="535.0" prefWidth="878.0" stylesheets="@DashboardDesign.css">
                                  <styleClass>
@@ -327,7 +327,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="available_form" layoutX="60.0" layoutY="66.0" prefHeight="555.0" prefWidth="903.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="available_form" layoutX="60.0" layoutY="66.0" prefHeight="555.0" prefWidth="903.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="24.0" layoutY="24.0" prefHeight="515.0" prefWidth="859.0" stylesheets="@DashboardDesign.css">
                                  <styleClass>
@@ -397,7 +397,7 @@
                                           <Font name="Tahoma" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="available_total" layoutX="735.0" layoutY="395.0" text="Rs 0.0">
+                                    <Label fx:id="available_total" layoutX="735.0" layoutY="395.0" prefHeight="23.0" prefWidth="122.0" text="Rs 0.0">
                                        <font>
                                           <Font name="Tahoma" size="18.0" />
                                        </font>

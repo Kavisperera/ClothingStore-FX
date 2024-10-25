@@ -161,6 +161,45 @@
 -fx-background-color:#9328a4;
 }
 
+.buy-btn{
+    -fx-background-color: #d17b0f;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+.buy-btn:hover{
+    -fx-background-color: #e89124;
+}
+
+.receipt-btn{
+    -fx-background-color: #000000;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+.receipt-btn:hover{
+     -fx-background-color: #333333;
+}
+
+.pay-btn{
+     -fx-background-color: #317584;
+     -fx-background-radius: 8px;
+     -fx-cursor: hand;
+     -fx-text-fill: #fff;
+     -fx-font-size: 14px;
+     -fx-font-family: "Arial";
+}
+
+.pay-btn:hover{
+    -fx-background-color: #33a2b8;
+}
+
 .search{
 -fx-background-color:transparent;
 -fx-border-color:linear-gradient(to bottom right,#0f6789,#286155);
