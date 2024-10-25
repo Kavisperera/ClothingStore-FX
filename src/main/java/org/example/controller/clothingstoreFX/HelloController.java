@@ -89,44 +89,61 @@ public class HelloController {
     private double x = 0;
     private double y = 0;
 
-    public void employeeLogin(){
-        String employeeData ="SELECT * FROM employee WHERE employeeId = ? and password = ?";
+    public void employeeLogin() {
+        String employeeData = "SELECT * FROM employee WHERE employeeId = ? and password = ?";
         connect = DBConnection.getInstance().getConnection();
-        try{
-
+        try {
             Alert alert;
 
             prepare = connect.prepareStatement(employeeData);
-            if (employee_id.getText().isEmpty()
-            || employee_password.getText().isEmpty()){
+
+            if (employee_id.getText().isEmpty() || employee_password.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
-            }else {
+            } else {
                 prepare.setString(1, employee_id.getText());
                 prepare.setString(2, employee_password.getText());
                 result = prepare.executeQuery();
 
-                if (result.next()){
+                if (result.next()) {
+
+                    getData.employeeId = employee_id.getText();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Login!");
                     alert.showAndWait();
+
                     employee_loginBtn.getScene().getWindow().hide();
 
-                    Parent root = load(requireNonNull(getClass().getResource("employeeDashboard.fxml")));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("employeeDashboard.fxml"));
+                    Parent root = loader.load();
 
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
 
+                    root.setOnMousePressed((MouseEvent event) -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+
+                    root.setOnMouseDragged((MouseEvent event) -> {
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+                        stage.setOpacity(0.8);
+                    });
+
+                    root.setOnMouseReleased((MouseEvent event) -> stage.setOpacity(1));
+
+                    stage.initStyle(StageStyle.TRANSPARENT);
+
                     stage.setScene(scene);
                     stage.show();
-
-                }else {
+                } else {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
@@ -134,11 +151,19 @@ public class HelloController {
                     alert.showAndWait();
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
 
-        }catch (Exception e){e.printStackTrace();}
-
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                if (connect != null) connect.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-
     public void supplierLogin(){
         String employeeData ="SELECT * FROM  supplier WHERE supplier_id = ? and password = ?";
         connect = DBConnection.getInstance().getConnection();
