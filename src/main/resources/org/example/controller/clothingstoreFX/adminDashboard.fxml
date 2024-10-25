@@ -123,7 +123,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="63.0" layoutY="127.0" prefHeight="555.0" prefWidth="903.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="63.0" layoutY="127.0" prefHeight="555.0" prefWidth="903.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="535.0" prefWidth="878.0" stylesheets="@DashboardDesign.css">
                                  <styleClass>
@@ -406,7 +406,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="employees_form" layoutX="90.0" layoutY="57.0" prefHeight="555.0" prefWidth="903.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="employees_form" layoutX="90.0" layoutY="57.0" prefHeight="555.0" prefWidth="903.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="17.0" prefHeight="521.0" prefWidth="874.0" stylesheets="@DashboardDesign.css">
                                  <styleClass>
@@ -463,7 +463,7 @@
                                     <TextField fx:id="employees_lastName" layoutX="477.0" layoutY="338.0" prefHeight="30.0" prefWidth="188.0" />
                                     <Button fx:id="employees_saveBtn" layoutX="774.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesSave" prefHeight="43.0" prefWidth="86.0" styleClass="add-btn" text="Save" />
                                     <Button fx:id="employees_updateBtn" layoutX="665.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesUpdate" prefHeight="43.0" prefWidth="86.0" styleClass="update-btn" text="Update" />
-                                    <Button fx:id="employees_deleteBtn" layoutX="510.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="delete-btn" text="Delete" />
+                                    <Button fx:id="employees_deleteBtn" layoutX="510.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesDelete" prefHeight="43.0" prefWidth="86.0" styleClass="delete-btn" text="Delete" />
                                     <Button fx:id="employees_clearBtn" layoutX="401.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesReset" prefHeight="43.0" prefWidth="86.0" styleClass="clear-btn" text="Clear" />
                                     <Label layoutX="421.0" layoutY="397.0" prefHeight="19.0" prefWidth="57.0" text="Gender:">
                                        <font>

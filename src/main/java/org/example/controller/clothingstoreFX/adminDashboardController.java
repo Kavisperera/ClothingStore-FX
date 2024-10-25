@@ -593,19 +593,70 @@ public class adminDashboardController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Updated!");
                     alert.showAndWait();
-
                     employeesShowListData();
+                    employeesReset();
+
                 } else {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
                     alert.setContentText("No employee found with ID: " + employees_employeeID.getText());
                     alert.showAndWait();
+
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void employeesDelete(){
+
+        String deleteEmployee = "DELETE FROM employee WHERE employeeId ='"
+                +employees_employeeID.getText()+"'";
+
+        connect = DBConnection.getInstance().getConnection();
+
+        try {
+            Alert alert;
+
+            if (employees_employeeID.getText().isEmpty() ||
+                    employees_password.getText().isEmpty() ||
+                    employees_firstName.getText().isEmpty() ||
+                    employees_lastName.getText().isEmpty() ||
+                    employees_gender.getSelectionModel().getSelectedItem() == null) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to DELETE Employee ID:"+ employees_employeeID.getText() + "?");
+                alert.showAndWait();
+
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)){
+                    prepare = connect.prepareStatement(deleteEmployee);
+                    prepare.executeUpdate();
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted!");
+                    alert.showAndWait();
+
+                    employeesShowListData();
+                    employeesReset();
+                }else {
+                    return;
+                }
+            }
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void employeesReset(){
