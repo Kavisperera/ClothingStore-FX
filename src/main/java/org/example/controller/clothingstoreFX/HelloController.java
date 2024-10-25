@@ -90,7 +90,7 @@ public class HelloController {
     private double y = 0;
 
     public void employeeLogin(){
-        String employeeData ="SELECT * FROM employee WHERE employee_id = ? and password = ?";
+        String employeeData ="SELECT * FROM employee WHERE employeeId = ? and password = ?";
         connect = DBConnection.getInstance().getConnection();
         try{
 
