@@ -210,3 +210,7 @@
 -fx-border-color:linear-gradient(to bottom right,#0f6789,#286155);
 -fx-border-width:.5px;
 }
+
+.Employee-nav-form{
+-fx-background-color: linear-gradient(to bottom right,#2e4d6e,#276a99);
+}
