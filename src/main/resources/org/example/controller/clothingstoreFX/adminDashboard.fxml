@@ -461,7 +461,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="employees_lastName" layoutX="477.0" layoutY="338.0" prefHeight="30.0" prefWidth="188.0" />
-                                    <Button fx:id="employees_saveBtn" layoutX="774.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="add-btn" text="Save" />
+                                    <Button fx:id="employees_saveBtn" layoutX="774.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesSave" prefHeight="43.0" prefWidth="86.0" styleClass="add-btn" text="Save" />
                                     <Button fx:id="employees_updateBtn" layoutX="665.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="update-btn" text="Update" />
                                     <Button fx:id="employees_deleteBtn" layoutX="510.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="delete-btn" text="Delete" />
                                     <Button fx:id="employees_clearBtn" layoutX="401.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="clear-btn" text="Clear" />
@@ -470,7 +470,7 @@
                                           <Font name="Tahoma" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="employees_gender" layoutX="478.0" layoutY="391.0" prefHeight="30.0" prefWidth="154.0" promptText="Choose" />
+                                    <ComboBox fx:id="employees_gender" layoutX="478.0" layoutY="391.0" onAction="#employeesGender" prefHeight="30.0" prefWidth="154.0" promptText="Choose" />
                                  </children>
                               </AnchorPane>
                            </children>

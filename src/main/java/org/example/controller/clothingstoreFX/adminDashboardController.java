@@ -475,14 +475,88 @@ public class adminDashboardController implements Initializable {
         });
     }
 
-    public void employeesSave(){
+    public void employeesSave() {
+
         java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
         String insertEmployee = "INSERT INTO employee (employeeId, password, firstName, lastName, gender, date) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
+        Connection connect = DBConnection.getInstance().getConnection();
 
-        
+        try {
+            Alert alert;
+
+            if (employees_employeeID.getText().isEmpty() ||
+                    employees_password.getText().isEmpty() ||
+                    employees_firstName.getText().isEmpty() ||
+                    employees_lastName.getText().isEmpty() ||
+                    employees_gender.getSelectionModel().getSelectedItem() == null) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+
+            } else {
+                String checkExist = "SELECT employeeId FROM employee WHERE employeeId = ?";
+                try (PreparedStatement statement = connect.prepareStatement(checkExist)) {
+                    statement.setString(1, employees_employeeID.getText());
+                    ResultSet result = statement.executeQuery();
+
+                    if (result.next()) {
+                        alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Employee ID: " + employees_employeeID.getText() + " already exists!");
+                        alert.showAndWait();
+                    } else {
+
+                        try (PreparedStatement prepare = connect.prepareStatement(insertEmployee)) {
+                            prepare.setString(1, employees_employeeID.getText());
+                            prepare.setString(2, employees_password.getText());
+                            prepare.setString(3, employees_firstName.getText());
+                            prepare.setString(4, employees_lastName.getText());
+                            prepare.setString(5, (String) employees_gender.getSelectionModel().getSelectedItem());
+                            prepare.setDate(6, sqlDate);
+
+                            prepare.executeUpdate();
+
+                            alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Information Message");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Successfully Saved!");
+                            alert.showAndWait();
+
+                            employeesShowListData();
+                            employeesReset();
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String [] genderList = {"Male","Female"};
+
+    public void employeesGender(){
+        List<String>genderL = new ArrayList<>();
+
+        for (String data:genderList){
+            genderL.add(data);
+        }
+        ObservableList listG = FXCollections.observableArrayList(genderL);
+        employees_gender.setItems(listG);
+
     }
 
+    public void employeesReset(){
+        employees_employeeID.setText("");
+        employees_password.setText("");
+        employees_firstName.setText("");
+        employees_lastName.setText("");
+        employees_gender.getSelectionModel().clearSelection();
+    }
 
     public ObservableList<employeeData> employeesListData() {
         ObservableList<employeeData> emData = FXCollections.observableArrayList();
@@ -499,9 +573,9 @@ public class adminDashboardController implements Initializable {
                         result.getString("employeeId"),
                         result.getString("password"),
                         result.getString("firstName"),
-                        result.getString("lastName"), // No leading space
-                        result.getString("gender"), // No leading space
-                        result.getDate("date") // No leading space
+                        result.getString("lastName"),
+                        result.getString("gender"),
+                        result.getDate("date")
                 );
                 emData.add(employeeD);
             }
@@ -660,6 +734,7 @@ public class adminDashboardController implements Initializable {
         setAddProductsStatusList();
 
         employeesShowListData();
+        employeesGender();
     }
 
 }
