@@ -462,9 +462,9 @@
                                     </Label>
                                     <TextField fx:id="employees_lastName" layoutX="477.0" layoutY="338.0" prefHeight="30.0" prefWidth="188.0" />
                                     <Button fx:id="employees_saveBtn" layoutX="774.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesSave" prefHeight="43.0" prefWidth="86.0" styleClass="add-btn" text="Save" />
-                                    <Button fx:id="employees_updateBtn" layoutX="665.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="update-btn" text="Update" />
+                                    <Button fx:id="employees_updateBtn" layoutX="665.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesUpdate" prefHeight="43.0" prefWidth="86.0" styleClass="update-btn" text="Update" />
                                     <Button fx:id="employees_deleteBtn" layoutX="510.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="delete-btn" text="Delete" />
-                                    <Button fx:id="employees_clearBtn" layoutX="401.0" layoutY="464.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="86.0" styleClass="clear-btn" text="Clear" />
+                                    <Button fx:id="employees_clearBtn" layoutX="401.0" layoutY="464.0" mnemonicParsing="false" onAction="#employeesReset" prefHeight="43.0" prefWidth="86.0" styleClass="clear-btn" text="Clear" />
                                     <Label layoutX="421.0" layoutY="397.0" prefHeight="19.0" prefWidth="57.0" text="Gender:">
                                        <font>
                                           <Font name="Tahoma" size="15.0" />

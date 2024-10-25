@@ -550,6 +550,64 @@ public class adminDashboardController implements Initializable {
 
     }
 
+    public void employeesUpdate() {
+        String updateEmployee = "UPDATE employee SET password = ?, firstName = ?, lastName = ?, gender = ? WHERE employeeId = ?";
+        connect = DBConnection.getInstance().getConnection();
+
+        try {
+            Alert alert;
+
+            if (employees_employeeID.getText().isEmpty() ||
+                    employees_password.getText().isEmpty() ||
+                    employees_firstName.getText().isEmpty() ||
+                    employees_lastName.getText().isEmpty() ||
+                    employees_gender.getSelectionModel().getSelectedItem() == null) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+                return;
+            }
+
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to UPDATE Employee ID: " + employees_employeeID.getText() + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+
+                PreparedStatement prepare = connect.prepareStatement(updateEmployee);
+                prepare.setString(1, employees_password.getText());
+                prepare.setString(2, employees_firstName.getText());
+                prepare.setString(3, employees_lastName.getText());
+                prepare.setString(4, (String) employees_gender.getSelectionModel().getSelectedItem());
+                prepare.setString(5, employees_employeeID.getText());
+
+                int rowsUpdated = prepare.executeUpdate();
+                if (rowsUpdated > 0) {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+
+                    employeesShowListData();
+                } else {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No employee found with ID: " + employees_employeeID.getText());
+                    alert.showAndWait();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void employeesReset(){
         employees_employeeID.setText("");
         employees_password.setText("");
@@ -562,7 +620,7 @@ public class adminDashboardController implements Initializable {
         ObservableList<employeeData> emData = FXCollections.observableArrayList();
         String sql = "SELECT * FROM employee";
 
-        connect = DBConnection.getInstance().getConnection();
+        Connection connect = DBConnection.getInstance().getConnection();
         try {
             employeeData employeeD;
             prepare = connect.prepareStatement(sql);
